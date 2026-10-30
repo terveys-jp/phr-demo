@@ -4,33 +4,45 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>食事・排便・顔色の PHR アプリ（デモ）</title>
-<link rel="stylesheet" href="style.css?v=20261030-5">
+<title>統合型PHRヘルスケアアプリのデモ</title>
+<link rel="stylesheet" href="style.css?v=20261030-6">
 </head>
 <body>
 <!-- 発注ナビ 202610280015（統合型PHRヘルスケアアプリの初期開発）向けのデモ。2026-10-30
      見るのは主に発注ナビの担当の方＝1ページ・ログインなし・専門用語なし（202610090019 の教訓）。
-     データはすべて架空。顔の写真は保存も送信もしない（その場で色を計算して捨てる） -->
-<main>
-  <header>
-    <span class="badge">デモ・架空のデータ</span>
-    <h1>食事・排便・顔色を記録し、<br>医師と共有するアプリ</h1>
-    <p>毎日の食事・排便・顔色をスマホで記録し、まとめた推移を医師が受診の時に確かめられる仕組みの見本です。下の画面は実際に触って試せます。</p>
-  </header>
+     データはすべて架空。顔の写真は保存も送信もしない（その場で色を計算して捨てる）。
+     見せ方は Cara Care・ウェルビーのページの組み立てを参考にした（ロゴ・文章・画像・色は写していない） -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="brand"><span class="mark">✚</span>統合型 PHR アプリ<small>デモ</small></span>
+    <nav class="topnav">
+      <a href="#app">患者様の画面</a>
+      <a href="#doctor">医師の画面</a>
+      <span class="demo-pill">架空のデータ</span>
+    </nav>
+  </div>
+</div>
 
-  <section>
-    <h2>💡 この仕組みがすること</h2>
-    <div class="steps-grid">
-      <div class="step-card"><span class="num">1</span><b>記録する</b><p>食事は写真から、排便は形の絵を選んで、顔色はスマホのカメラで記録します。</p></div>
-      <div class="step-card"><span class="num">2</span><b>まとめる</b><p>3つの記録を合わせて、その日の助言を出します。</p></div>
-      <div class="step-card"><span class="num">3</span><b>共有する</b><p>患者様が許可した医師だけが、30日分の推移と受診前のまとめを見られます。</p></div>
-      <div class="step-card"><span class="num">4</span><b>広げる</b><p>部品を足す形で、ウェアラブル端末やバイタル機器をあとからつなげます。</p></div>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow">食事・排便・顔色をひとつのアプリで</span>
+      <h1>毎日の記録を、<em>医師に伝わる形に。</em></h1>
+      <p class="lead">スマホで食事・排便・顔色を記録すると、アプリが3つを合わせてその日の助言を返します。受診の時には、患者様が許可した医師が30日分の推移を確かめられます。</p>
+      <ul class="checks">
+        <li>食事は写真、排便は絵を選ぶだけ、顔色はカメラで</li>
+        <li>3つの記録を合わせて、その日の助言</li>
+        <li>共有するかどうかは患者様が決める</li>
+      </ul>
+      <div class="cta">
+        <a class="btn-cta warm" href="#app">患者様の画面を試す</a>
+        <a class="btn-cta line" href="#doctor">医師の画面を見る</a>
+      </div>
     </div>
-  </section>
 
-  <section>
-    <h2>📱 患者様のスマホ画面<small>（触って試せます）</small></h2>
-    <div class="phone-wrap">
+    <div class="hero-visual" id="app">
+      <span class="float-chip chip-a">👆 触って試せます</span>
+      <span class="float-chip chip-b">🔐 許可した医師と共有</span>
       <div class="phone">
         <div class="phone-top"><span id="today-label"></span><span>きょうの記録</span></div>
         <nav class="tabs" role="tablist">
@@ -75,40 +87,77 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2>🩺 医師の画面<small>（30日分の推移・架空の患者様）</small></h2>
-    <div class="pt-picks" id="pt-picks"></div>
-    <div class="doc-grid">
-      <div class="chart-box">
-        <div class="chart-title">便の形<span>（1＝硬い 〜 7＝水のよう。帯は 3〜5 の普通の範囲、下の白丸は排便のない日）</span></div>
-        <svg id="ch-stool" class="chart" viewBox="0 0 600 140"></svg>
-        <div class="chart-title">食物繊維（g）<span>（食事の記録から）</span></div>
-        <svg id="ch-fiber" class="chart" viewBox="0 0 600 100"></svg>
-        <div class="chart-title">顔色の指標<span>（点線はその方のふだんの値）</span></div>
-        <svg id="ch-face" class="chart" viewBox="0 0 600 100"></svg>
-        <div class="axis" id="ch-axis"></div>
-      </div>
-      <div class="summary-box">
-        <h3>受診前のまとめ</h3>
-        <div id="doc-summary"></div>
+<section class="band">
+  <div class="wrap">
+    <span class="sec-label">使い方</span>
+    <h2 class="sec-title">記録から受診まで、<em>3つの段階</em>で。</h2>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><span class="ic">📝</span><b>記録する</b><p>食事は写真から、排便は形の絵を選んで、顔色はスマホのカメラで。毎日の記録は数回のタップで終わります。</p></div>
+      <div class="step"><span class="n">02</span><span class="ic">✨</span><b>まとめる</b><p>3つの記録を時系列で合わせて、その日の助言を返します。食物繊維・脂質・便の形・顔色の変化を見ます。</p></div>
+      <div class="step"><span class="n">03</span><span class="ic">🩺</span><b>医師と共有する</b><p>患者様が許可した医師だけが、30日分の推移と受診前のまとめを確かめられます。通院時の記憶に頼りません。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <span class="sec-label">できること</span>
+    <h2 class="sec-title">続けやすく、<em>医師に伝わる</em>記録。</h2>
+    <div class="feat-grid">
+      <div class="feat"><span class="ic">🍱</span><b>食事は写真から</b><p>料理の写真を撮ると、食事解析の仕組みが料理名と栄養（食物繊維・脂質・塩分など）を返します。</p></div>
+      <div class="feat"><span class="ic">🚽</span><b>排便は絵を選ぶだけ</b><p>ブリストル便形状スケールの7つの絵から選びます。言葉で説明しにくい状態も、そのまま残せます。</p></div>
+      <div class="feat"><span class="ic">🙂</span><b>顔色はカメラで</b><p>肌の色から簡易の指標をその場で計算し、ふだんの値と比べます。写真は保存も送信もしません。</p></div>
+      <div class="feat"><span class="ic">🔐</span><b>許可した医師とだけ共有</b><p>誰に見せるかは患者様が決め、いつでも取り消せます。医師が見た記録はすべて残ります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="doctor" id="doctor">
+  <div class="wrap">
+    <span class="sec-label">医療関係者の方へ</span>
+    <h2 class="sec-title">受診の前に、<em>30日分の推移</em>をひと目で。</h2>
+    <p class="sec-lead">架空の患者様2人の記録です。患者様を切り替えて、便の形・食物繊維・顔色の推移と、受診前のまとめをご覧ください。</p>
+    <div class="browser">
+      <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="addr">医師用の管理画面</span></div>
+      <div class="browser-body">
+        <div class="pt-picks" id="pt-picks"></div>
+        <div class="doc-grid">
+          <div class="chart-box">
+            <div class="chart-title">便の形<span>（1＝硬い 〜 7＝水のよう。帯は 3〜5 の普通の範囲、下の白丸は排便のない日）</span></div>
+            <svg id="ch-stool" class="chart" viewBox="0 0 600 140"></svg>
+            <div class="chart-title">食物繊維（g）<span>（食事の記録から）</span></div>
+            <svg id="ch-fiber" class="chart" viewBox="0 0 600 100"></svg>
+            <div class="chart-title">顔色の指標<span>（点線はその方のふだんの値）</span></div>
+            <svg id="ch-face" class="chart" viewBox="0 0 600 100"></svg>
+            <div class="axis" id="ch-axis"></div>
+          </div>
+          <div class="summary-box">
+            <h3>受診前のまとめ</h3>
+            <div id="doc-summary"></div>
+          </div>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-box">
+            <h3>🔐 共有の許可<small>（患者様が決めます）</small></h3>
+            <ul class="consent" id="consent"></ul>
+          </div>
+          <div class="trust-box">
+            <h3>🗒 閲覧の記録<small>（誰がいつ見たか）</small></h3>
+            <table class="audit"><tbody id="audit"></tbody></table>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="trust-grid">
-      <div class="trust-box">
-        <h3>🔐 共有の許可<small>（患者様が決めます）</small></h3>
-        <ul class="consent" id="consent"></ul>
-      </div>
-      <div class="trust-box">
-        <h3>🗒 閲覧の記録<small>（誰がいつ見たか）</small></h3>
-        <table class="audit"><tbody id="audit"></tbody></table>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2>🧩 部品の組み立て<small>（あとから機能を足せる形）</small></h2>
+<section class="arch-sec">
+  <div class="wrap">
+    <span class="sec-label">将来の拡張</span>
+    <h2 class="sec-title">部品を<em>足していける</em>作り。</h2>
     <div class="arch">
       <div class="arch-row"><div class="arch-box app">患者様のスマホアプリ<small>iOS・Android</small></div><div class="arch-box app">医師の画面<small>Web</small></div></div>
       <div class="arch-bus">API（部品どうしの決まったつなぎ口）・暗号化した通信と保存・閲覧の記録</div>
@@ -122,13 +171,21 @@
       </div>
     </div>
     <p class="arch-note">部品ごとにつなぎ口を決めておくので、点線の部品は、いまの部品を作り直さずに足せます。</p>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    今回のご要望に合わせて作ったデモです。患者様・医師・数値はすべて架空です。料理の写真：Unsplash<br>
-    作成：Terveys Technology Solutions Pvt Ltd 日本支店
-  </footer>
-</main>
-<script src="app.js?v=20261030-5"></script>
+<section class="trust">
+  <div class="wrap trust-items">
+    <div class="trust-item"><span class="ic">🧪</span><span>このデモの患者様・医師・数値は<br>すべて架空です</span></div>
+    <div class="trust-item"><span class="ic">📷</span><span>顔の写真は保存も送信もせず、<br>その場で計算して捨てます</span></div>
+    <div class="trust-item"><span class="ic">🛡</span><span>本番は3省2ガイドラインに沿って<br>暗号化と権限を設計します</span></div>
+  </div>
+</section>
+
+<footer>
+  今回のご要望に合わせて作ったデモです。料理の写真：Unsplash<br>
+  作成：Terveys Technology Solutions Pvt Ltd 日本支店
+</footer>
+<script src="app.js?v=20261030-6"></script>
 </body>
 </html>

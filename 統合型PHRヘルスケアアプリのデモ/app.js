@@ -293,13 +293,13 @@
   function chartFiber(data) {
     var s = '<line x1="0" x2="600" y1="' + (95 - 20 * 3.4) + '" y2="' + (95 - 20 * 3.4) + '" stroke="#059669" stroke-dasharray="4 3"/>' +
       '<text x="600" y="' + (95 - 20 * 3.4 - 3) + '" font-size="16" fill="#059669" text-anchor="end">目標の例 20g</text>';
-    data.forEach(function (d, i) { var h = d.fiber * 3.4; s += '<rect x="' + (x(i) - 7) + '" y="' + (95 - h) + '" width="14" height="' + h + '" rx="2" fill="#38bdf8"/>'; });
+    data.forEach(function (d, i) { var h = d.fiber * 3.4; s += '<rect x="' + (x(i) - 7) + '" y="' + (95 - h) + '" width="14" height="' + h + '" rx="2" fill="#5ec9b6"/>'; });
     return s;
   }
   function chartFace(data) {
     var y = function (v) { return 40 - v * 7; };
     var s = '<line x1="0" x2="600" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#94a3b8" stroke-dasharray="4 3"/>';
-    s += '<polyline fill="none" stroke="#0284c7" stroke-width="2.5" points="' + data.map(function (d, i) { return x(i) + ',' + y(d.face); }).join(' ') + '"/>';
+    s += '<polyline fill="none" stroke="#0f766e" stroke-width="2.5" points="' + data.map(function (d, i) { return x(i) + ',' + y(d.face); }).join(' ') + '"/>';
     data.forEach(function (d, i) { if (d.face <= -3) s += '<circle cx="' + x(i) + '" cy="' + y(d.face) + '" r="4" fill="#e11d48"/>'; });
     return s;
   }
