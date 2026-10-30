@@ -346,4 +346,17 @@
     renderAudit();
   }
   renderDoc();
+
+  /* ---------- 画面の切り替え（#patient＝患者様の画面／#doctor＝医師の画面／それ以外＝最初の画面） ---------- */
+  function route() {
+    var h = location.hash.slice(1);
+    var v = (h === 'patient' || h === 'doctor') ? h : '';
+    document.body.classList.toggle('v-patient', v === 'patient');
+    document.body.classList.toggle('v-doctor', v === 'doctor');
+    document.querySelectorAll('.topnav a[href^="#"]').forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + v); });
+    if (v !== 'patient') stopCamera();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
 })();

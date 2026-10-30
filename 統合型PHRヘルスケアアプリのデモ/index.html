@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>統合型PHRヘルスケアアプリのデモ</title>
-<link rel="stylesheet" href="style.css?v=20261030-6">
+<link rel="stylesheet" href="style.css?v=20261030-8">
 </head>
 <body>
 <!-- 発注ナビ 202610280015（統合型PHRヘルスケアアプリの初期開発）向けのデモ。2026-10-30
@@ -14,16 +14,16 @@
      見せ方は Cara Care・ウェルビーのページの組み立てを参考にした（ロゴ・文章・画像・色は写していない） -->
 <div class="topbar">
   <div class="wrap">
-    <span class="brand"><span class="mark">✚</span>統合型 PHR アプリ<small>デモ</small></span>
+    <a class="brand" href="#"><span class="mark">✚</span>統合型 PHR アプリ<small>デモ</small></a>
     <nav class="topnav">
-      <a href="#app">患者様の画面</a>
+      <a href="#patient">患者様の画面</a>
       <a href="#doctor">医師の画面</a>
       <span class="demo-pill">架空のデータ</span>
     </nav>
   </div>
 </div>
 
-<section class="hero">
+<section class="hero home">
   <div class="wrap">
     <div class="hero-text">
       <span class="eyebrow">食事・排便・顔色をひとつのアプリで</span>
@@ -35,14 +35,69 @@
         <li>共有するかどうかは患者様が決める</li>
       </ul>
       <div class="cta">
-        <a class="btn-cta warm" href="#app">患者様の画面を試す</a>
+        <a class="btn-cta warm" href="#patient">患者様の画面を試す</a>
         <a class="btn-cta line" href="#doctor">医師の画面を見る</a>
       </div>
     </div>
 
-    <div class="hero-visual" id="app">
-      <span class="float-chip chip-a">👆 触って試せます</span>
-      <span class="float-chip chip-b">🔐 許可した医師と共有</span>
+    <div class="hero-visual">
+      <div class="pv-stack">
+      <a class="pv pv-doctor" href="#doctor" aria-label="医師の画面を見る"><img src="img/preview_doctor.png" alt="医師用の管理画面の見本"></a>
+      <a class="pv pv-phone" href="#patient" aria-label="患者様の画面を試す"><img src="img/preview_phone.png" alt="患者様のスマホ画面の見本"></a>
+      <span class="float-chip chip-a">📱 押すと患者様の画面へ</span>
+      <span class="float-chip chip-b">🩺 押すと医師の画面へ</span>
+      </div>
+      <p class="pv-caption"><span class="see-badge">🖼 画面の写真</span>ここは写真です。<b>写真かボタンを押すと、触って動く画面が開きます。</b></p>
+    </div>
+  </div>
+</section>
+
+<section class="band home">
+  <div class="wrap">
+    <span class="sec-label">使い方</span>
+    <h2 class="sec-title">記録から受診まで、<em>3つの段階</em>で。</h2>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><span class="ic">📝</span><b>記録する</b><p>食事は写真から、排便は形の絵を選んで、顔色はスマホのカメラで。毎日の記録は数回のタップで終わります。</p></div>
+      <div class="step"><span class="n">02</span><span class="ic">✨</span><b>まとめる</b><p>3つの記録を時系列で合わせて、その日の助言を返します。食物繊維・脂質・便の形・顔色の変化を見ます。</p></div>
+      <div class="step"><span class="n">03</span><span class="ic">🩺</span><b>医師と共有する</b><p>患者様が許可した医師だけが、30日分の推移と受診前のまとめを確かめられます。通院時の記憶に頼りません。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="features home">
+  <div class="wrap">
+    <span class="sec-label">できること</span>
+    <h2 class="sec-title">続けやすく、<em>医師に伝わる</em>記録。</h2>
+    <div class="feat-grid">
+      <div class="feat"><span class="ic">🍱</span><b>食事は写真から</b><p>料理の写真を撮ると、食事解析の仕組みが料理名と栄養（食物繊維・脂質・塩分など）を返します。</p></div>
+      <div class="feat"><span class="ic">🚽</span><b>排便は絵を選ぶだけ</b><p>ブリストル便形状スケールの7つの絵から選びます。言葉で説明しにくい状態も、そのまま残せます。</p></div>
+      <div class="feat"><span class="ic">🙂</span><b>顔色はカメラで</b><p>肌の色から簡易の指標をその場で計算し、ふだんの値と比べます。写真は保存も送信もしません。</p></div>
+      <div class="feat"><span class="ic">🔐</span><b>許可した医師とだけ共有</b><p>誰に見せるかは患者様が決め、いつでも取り消せます。医師が見た記録はすべて残ります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="view patient" id="patient">
+  <div class="wrap">
+    <span class="sec-label">患者様の画面</span>
+    <h2 class="sec-title">毎日の記録を、<em>触って</em>試せます。</h2>
+    <div class="patient-grid">
+      <div class="guide">
+        <b class="guide-title">この順に試してください</b>
+        <ol class="guide-steps">
+          <li><span>1</span><div><b>食事</b>見本の写真を選ぶと、写真を解析して料理名と栄養を返します。</div></li>
+          <li><span>2</span><div><b>排便</b>便の形に近い絵を選びます（ブリストル便形状スケール）。</div></li>
+          <li><span>3</span><div><b>顔色</b>「カメラを使う」か「見本の値で試す」で、顔色の指標を出します。写真は保存も送信もしません。</div></li>
+          <li><span>4</span><div><b>まとめ</b>3つの記録を合わせた、きょうの助言が出ます。</div></li>
+        </ol>
+        <p class="guide-note">記録は、患者様が許可した医師だけが見られます。</p>
+        <div class="view-nav">
+          <a class="btn-cta line" href="#doctor">医師の画面を見る →</a>
+          <a class="back" href="#">← 最初の画面へ</a>
+        </div>
+      </div>
+      <div class="phone-stage">
+        <span class="touch-badge pulse">👆 このスマホの画面は、触って動きます</span>
       <div class="phone">
         <div class="phone-top"><span id="today-label"></span><span>きょうの記録</span></div>
         <nav class="tabs" role="tablist">
@@ -53,7 +108,7 @@
         </nav>
 
         <div class="pane on" id="pane-meal">
-          <p class="hint">実際は料理の写真を撮ると、食事解析の仕組みが中身を返します。デモでは見本の写真を選んでください。</p>
+          <p class="hint">実際は料理の写真を撮ると、食事解析の仕組みが中身を返します。<b>👆 見本の写真を押してください。</b></p>
           <div class="meal-picks" id="meal-picks"></div>
           <div class="result" id="meal-result" hidden></div>
           <ul class="log" id="meal-log"></ul>
@@ -86,44 +141,24 @@
           <p class="note">※ 助言は見本の文です。実際は統合 AI エンジンが記録をまとめて出します。</p>
         </div>
       </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap">
-    <span class="sec-label">使い方</span>
-    <h2 class="sec-title">記録から受診まで、<em>3つの段階</em>で。</h2>
-    <div class="steps">
-      <div class="step"><span class="n">01</span><span class="ic">📝</span><b>記録する</b><p>食事は写真から、排便は形の絵を選んで、顔色はスマホのカメラで。毎日の記録は数回のタップで終わります。</p></div>
-      <div class="step"><span class="n">02</span><span class="ic">✨</span><b>まとめる</b><p>3つの記録を時系列で合わせて、その日の助言を返します。食物繊維・脂質・便の形・顔色の変化を見ます。</p></div>
-      <div class="step"><span class="n">03</span><span class="ic">🩺</span><b>医師と共有する</b><p>患者様が許可した医師だけが、30日分の推移と受診前のまとめを確かめられます。通院時の記憶に頼りません。</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="features">
-  <div class="wrap">
-    <span class="sec-label">できること</span>
-    <h2 class="sec-title">続けやすく、<em>医師に伝わる</em>記録。</h2>
-    <div class="feat-grid">
-      <div class="feat"><span class="ic">🍱</span><b>食事は写真から</b><p>料理の写真を撮ると、食事解析の仕組みが料理名と栄養（食物繊維・脂質・塩分など）を返します。</p></div>
-      <div class="feat"><span class="ic">🚽</span><b>排便は絵を選ぶだけ</b><p>ブリストル便形状スケールの7つの絵から選びます。言葉で説明しにくい状態も、そのまま残せます。</p></div>
-      <div class="feat"><span class="ic">🙂</span><b>顔色はカメラで</b><p>肌の色から簡易の指標をその場で計算し、ふだんの値と比べます。写真は保存も送信もしません。</p></div>
-      <div class="feat"><span class="ic">🔐</span><b>許可した医師とだけ共有</b><p>誰に見せるかは患者様が決め、いつでも取り消せます。医師が見た記録はすべて残ります。</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="doctor" id="doctor">
+<section class="view doctor" id="doctor">
   <div class="wrap">
     <span class="sec-label">医療関係者の方へ</span>
     <h2 class="sec-title">受診の前に、<em>30日分の推移</em>をひと目で。</h2>
     <p class="sec-lead">架空の患者様2人の記録です。患者様を切り替えて、便の形・食物繊維・顔色の推移と、受診前のまとめをご覧ください。</p>
+    <div class="legend">
+      <span><span class="touch-badge">👆 押して試せる</span>患者様の切り替え（Aさん・Bさん）と、共有の許可のボタン</span>
+      <span><span class="see-badge">👀 見るだけ</span>グラフ・受診前のまとめ・閲覧の記録</span>
+    </div>
     <div class="browser">
       <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="addr">医師用の管理画面</span></div>
       <div class="browser-body">
-        <div class="pt-picks" id="pt-picks"></div>
+        <div class="pt-row"><span class="touch-mini">👆 押して切り替え</span><div class="pt-picks" id="pt-picks"></div></div>
         <div class="doc-grid">
           <div class="chart-box">
             <div class="chart-title">便の形<span>（1＝硬い 〜 7＝水のよう。帯は 3〜5 の普通の範囲、下の白丸は排便のない日）</span></div>
@@ -141,20 +176,24 @@
         </div>
         <div class="trust-grid">
           <div class="trust-box">
-            <h3>🔐 共有の許可<small>（患者様が決めます）</small></h3>
+            <h3>🔐 共有の許可<small>（患者様が決めます）</small><span class="touch-mini">👆 押して試せます</span></h3>
             <ul class="consent" id="consent"></ul>
           </div>
           <div class="trust-box">
-            <h3>🗒 閲覧の記録<small>（誰がいつ見たか）</small></h3>
+            <h3>🗒 閲覧の記録<small>（誰がいつ見たか）</small><span class="see-mini">👀 見るだけ</span></h3>
             <table class="audit"><tbody id="audit"></tbody></table>
           </div>
         </div>
       </div>
     </div>
+    <div class="view-nav center">
+      <a class="btn-cta warm" href="#patient">患者様の画面を試す</a>
+      <a class="back" href="#">← 最初の画面へ</a>
+    </div>
   </div>
 </section>
 
-<section class="arch-sec">
+<section class="arch-sec home">
   <div class="wrap">
     <span class="sec-label">将来の拡張</span>
     <h2 class="sec-title">部品を<em>足していける</em>作り。</h2>
@@ -186,6 +225,6 @@
   今回のご要望に合わせて作ったデモです。料理の写真：Unsplash<br>
   作成：Terveys Technology Solutions Pvt Ltd 日本支店
 </footer>
-<script src="app.js?v=20261030-6"></script>
+<script src="app.js?v=20261030-8"></script>
 </body>
 </html>
