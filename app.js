@@ -25,24 +25,41 @@
   });
 
   /* ---------- 食事 ---------- */
+  // 写真は Unsplash（Unsplash ライセンス）。tags は写真の上の札の位置（横 %・縦 %）
   var MEALS = [
-    { id: 'b', when: '朝', em: '🍙', name: 'ごはん・味噌汁・納豆・焼き鮭', kcal: 540, fiber: 5.6, fat: 14, salt: 3.1 },
-    { id: 'l', when: '昼', em: '🍜', name: 'しょうゆラーメン', kcal: 680, fiber: 2.4, fat: 22, salt: 6.2 },
-    { id: 'd', when: '夜', em: '🥗', name: '野菜炒め定食', kcal: 650, fiber: 7.8, fat: 21, salt: 3.6 },
-    { id: 's', when: '間食', em: '🍌', name: 'ヨーグルトとバナナ', kcal: 190, fiber: 1.6, fat: 3, salt: 0.1 }
+    { id: 'b', when: '朝', img: 'img/meal_breakfast.jpg', name: '焼き魚の和朝食', kcal: 560, fiber: 4.5, fat: 15, salt: 3.8,
+      tags: [['アジの開き', 57, 27], ['ごはん', 55, 80], ['味噌汁', 74, 56], ['卵焼き', 30, 73], ['サラダ', 14, 33]] },
+    { id: 'l', when: '昼', img: 'img/meal_ramen.jpg', name: 'しょうゆラーメン', kcal: 700, fiber: 3.0, fat: 24, salt: 6.5,
+      tags: [['チャーシュー', 40, 64], ['味付け玉子', 52, 32], ['メンマ', 80, 56], ['ほうれん草', 68, 18], ['もやし', 17, 24]] },
+    { id: 'd', when: '夜', img: 'img/meal_ajifry.jpg', name: 'アジフライ定食', kcal: 820, fiber: 4.0, fat: 34, salt: 3.5,
+      tags: [['アジフライ', 52, 60], ['キャベツ', 62, 28], ['ごはん', 16, 74], ['味噌汁', 15, 26], ['漬物', 88, 16]] },
+    { id: 's', when: '間食', img: 'img/meal_fruit.jpg', name: 'フルーツとグラノーラ', kcal: 230, fiber: 4.2, fat: 4, salt: 0.1,
+      tags: [['いちご', 33, 32], ['バナナ', 46, 62], ['ブルーベリー', 68, 46], ['グラノーラ', 30, 70]] }
   ];
-  var eaten = [];
+  var eaten = [], scanTimer = null;
   MEALS.forEach(function (m) {
     var b = document.createElement('button');
     b.className = 'meal-pick';
-    b.innerHTML = '<span class="em">' + m.em + '</span>' + m.when + '：' + esc(m.name);
+    b.innerHTML = '<img src="' + m.img + '" alt="">' + m.when + '：' + esc(m.name);
     b.addEventListener('click', function () {
       if (eaten.indexOf(m) < 0) { eaten.push(m); b.classList.add('done'); }
+      clearTimeout(scanTimer);
       $('meal-result').hidden = false;
-      $('meal-result').innerHTML = '<b>' + m.em + ' ' + esc(m.name) + '</b>' +
-        '<div class="kv"><span>エネルギー ' + m.kcal + ' kcal</span><span>食物繊維 ' + m.fiber + ' g</span>' +
-        '<span>脂質 ' + m.fat + ' g</span><span>塩分 ' + m.salt + ' g</span></div>' +
-        '<div class="src">食事解析の結果の例（実際は写真から自動で返ります）</div>';
+      $('meal-result').innerHTML = '<div class="photo scanning"><img src="' + m.img + '" alt="' + esc(m.name) + '"><div class="scan"></div></div>' +
+        '<div class="src">写真を解析しています…</div>';
+      scanTimer = setTimeout(function () {
+        var ph = $('meal-result').querySelector('.photo');
+        ph.classList.remove('scanning');
+        ph.querySelector('.scan').remove();
+        ph.innerHTML += m.tags.map(function (t) {
+          return '<span class="tag" style="left:' + t[1] + '%;top:' + t[2] + '%">' + esc(t[0]) + '</span>';
+        }).join('');
+        $('meal-result').querySelector('.src').remove();
+        $('meal-result').insertAdjacentHTML('beforeend', '<b>' + m.when + '：' + esc(m.name) + '</b>' +
+          '<div class="kv"><span>エネルギー ' + m.kcal + ' kcal</span><span>食物繊維 ' + m.fiber + ' g</span>' +
+          '<span>脂質 ' + m.fat + ' g</span><span>塩分 ' + m.salt + ' g</span></div>' +
+          '<div class="src">食事解析の結果の例（実際は写真から自動で返ります）</div>');
+      }, 900);
       renderMealLog();
     });
     $('meal-picks').appendChild(b);
@@ -158,6 +175,7 @@
     }
     var fiber = eaten.reduce(function (s, m) { return s + m.fiber; }, 0);
     var kcal = eaten.reduce(function (s, m) { return s + m.kcal; }, 0);
+    var fat = eaten.reduce(function (s, m) { return s + m.fat; }, 0);
     var last = stools.length ? stools[stools.length - 1].t : null;
     var rows = [
       ['食事', eaten.length ? eaten.length + '回・' + kcal + ' kcal' : 'まだ記録なし'],
@@ -167,6 +185,7 @@
     ];
     var tips = [];
     if (eaten.length && fiber < 15) tips.push('食物繊維が少なめです。野菜・海藻・豆を一品足しましょう。');
+    if (fat > 50) tips.push('脂質が多めです。揚げ物やスープの脂は控えめにしましょう。');
     if (last !== null && last <= 2) tips.push('便が硬めです。水分をこまめにとりましょう。');
     if (last !== null && last >= 6) tips.push('便がゆるめです。脂っこい食事は控えめにしましょう。');
     if (stools.length >= 4) tips.push('きょうは排便の回数が多めです。');
